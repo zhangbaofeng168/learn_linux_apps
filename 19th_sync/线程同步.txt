@@ -1,0 +1,10 @@
+多线程同步;
+	多个线程按照规定的顺序来执行，即为线程同步
+	
+条件变量：
+	初始化条件变量：
+		ptherad_cond_t cond_ready = PTHREAD_COND_INITIALIZER
+	等待条件成熟：
+		pthread_cond_wait(&cond_ready,&mut);
+	条件成熟发送信号：
+		pthread_cond_signal(&cond_ready);

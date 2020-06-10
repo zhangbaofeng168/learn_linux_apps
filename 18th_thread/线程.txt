@@ -1,0 +1,40 @@
+多进程：
+	提高程序的效率
+	缺点：浪费资源
+线程：
+	共享创建线程的进程的资源
+	提高程序的效率
+	避免浪费
+	不创建新的代码段，数据段
+	线程拥有自己的栈
+	线程是轻量级的进程
+	当创建线程的进程退出时由他所创建的线程也退出
+启动或创建一个线程：（ Compile and link with -pthread.）gcc -pthread
+	 int pthread_create(pthread_t *thread, const pthread_attr_t *attr,
+                          void *(*start_routine) (void *), void *arg);
+         成功返回0，失败返回一个错误num
+         pthread_t *thread：线程ID，成功的话保存线程ID到thread所指的地方
+         const pthread_attr_t *attr：属性，决定新线程的属性，如：优先级等
+         			     如果为NULL，系统分配默认属性
+         void *(*start_routine) (void *)：指明线程所要执行的函数，即线程的入口函数
+         void *arg：线程入口函数的参数，可以为NULL
+         
+等待线程结束：
+	 int pthread_join(pthread_t thread, void **retval);
+	 成功返回0，失败返回一个错误num
+	 pthread_t *thread：线程ID
+	 void **retval：线程退出状态，一般为空
+退出或结束线程：
+	 void pthread_exit(void *retval);
+	 void *retval：保存返回值
+线程互斥：
+1.互斥锁
+	初始化互斥锁：
+		 int pthread_mutex_init(pthread_mutex_t *restrict mutex,
+                          const pthread_mutexattr_t *restrict attr);
+         上锁：
+         	 int pthread_mutex_lock(pthread_mutex_t *mutex);
+      		 int pthread_mutex_trylock(pthread_mutex_t *mutex);
+      	 解锁：
+      		 int pthread_mutex_unlock(pthread_mutex_t *mutex);
+		

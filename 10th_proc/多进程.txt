@@ -1,0 +1,27 @@
+创建进程 
+
+fork:	创建子进程函数fork();运行顺序不一定
+	pid = fork();/*子进程从fork函数之后开始运行*/
+	父进程返回大于0的pid ，子进程返回0
+	子进程有自己独立的堆栈
+	
+vfork:	vfork创建子进程阻塞父进程
+	一定子进程先运行
+	子进程会共享父进程的堆栈
+	
+进程退出
+
+	父进程  return0,
+		exit(0); 0正常退出，1异常退出
+		
+	子进程  exit(0)
+
+进程等待:
+pid_t wait(int *status);
+	挂起调用他的进程
+
+pid_t waitpid(pid_t pid, int *status, int options);
+
+运行进程：
+	exec运行可执行文件
+	exec 被调用之后，程序代码段发生变化，变成exec执行的程序的代码

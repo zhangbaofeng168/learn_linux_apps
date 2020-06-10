@@ -1,0 +1,31 @@
+消息队列：
+创建或打开消息队列
+	int msgget(key_t key, int msgflg);
+	成功返回消息队列id，失败返回-1
+	key：键值
+	msgflg：打开标志，IPC_CREAT创建
+将消息放入消息队列（发送数据）
+	int msgsnd(int msqid, const void *msgp, size_t msgsz, int msgflg);
+	失败返回-1，成功返回0
+	msqid：指明消息队列
+	msgp： 指向要发送的消息
+	msgsz：消息的长度
+	msgflg：标志
+从消息队列中读消息
+	ssize_t msgrcv(int msqid, void *msgp, size_t msgsz, long msgtyp,
+                      int msgflg);
+        成功返回读取的字节，失败返回-1
+        msqid：消息队列
+        msgp： 存放取出的消息
+        msgsz：希望取到的消息的最大长度
+        msgtyp：消息的类型 0：忽略类型，直接去队列中第一条消息
+        	当大于0时取类型等于msgtyp的消息队列的第一条消息
+        	当小于0时取小于或等于msgtyp绝对值的最小的消息队列的第一条消息
+        msgflg：标志
+删除消息队列：
+	int msgctl(int msqid, int cmd, struct msqid_ds *buf);
+	成功返回大于0的数，失败返回-1
+	msqid：指明消息队列
+	cmd:   命令	eg：IPC_RMID删除      
+	buf:   获取内核中的msqid_ds 通常不用
+        	

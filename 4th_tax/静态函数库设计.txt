@@ -1,0 +1,18 @@
+动态函数库 *.so.*
+静态函数库 *.a
+
+静态函数库：
+程序所用到的库函数要拷贝到程序里
+
+1.linux 系统默认使用动态函数库
+
+2.gcc -static hello.c 使用静态函数
+
+制作静态函数库
+1.gcc -c mylib.c -o mylib.o
+2.ar cqs libmylib.a mylib.o
+3.将制作好的libmylib.a复制到/usr/lib
+
+如何使用：
+用-l选项指明需要链接的库
+gcc test.c -lmylib -o test

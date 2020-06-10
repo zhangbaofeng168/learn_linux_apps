@@ -1,0 +1,15 @@
+core dump 核心转存
+
+错误原因  段错误
+1.数组越界
+2.访问空指针
+3.修改常量
+4.栈溢出
+
+ulimit -c unlimited 打开core dump 功能
+ulimit -c 0   关闭core dump 功能
+
+
+gdb 程序名 core文件
+
+gdb + test+test.core

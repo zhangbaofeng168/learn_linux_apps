@@ -1,0 +1,25 @@
+创建获取共享内存：
+	int shmget(key_t key, size_t size, int shmflg);
+	成功返回共享内存的描述符，失败返回-1
+	key:共享内存的键值
+	size:共享内存的大小
+	shmflg:打开标志，如果使用IPC_CREAT则会新建共享内存
+映射共享内存：
+	void *shmat(int shmid, const void *shmaddr, int shmflg);
+	把shmid指定的共享内存映射到进程的地址空间里
+	成功的时候返回映射到进程空间的内存地址，失败返回-1
+	shmid:要映射的的共享内存描述符
+	shmaddr:指定映射到进程地址空间的内存地址，如果为NULL则系统自动分配地址
+	shmflg:标志
+断开共享内存映射：
+	int shmdt(const void *shmaddr);
+	成功返回0，失败返回-1
+	shmaddr:shmat()返回的地址
+控制共享内存:
+	int shmctl(int shmid, int cmd, struct shmid_ds *buf);
+	成功返回大于0，失败返回-1
+	shmid:要控制的共享内存描述符
+	cmd：要对共享内存执行的命令 IPC_RMID删除共享内存，，
+	buf: 获取linux中描述共享内存的shmid_ds，基本不使用这个参数，设置为0
+	
+	

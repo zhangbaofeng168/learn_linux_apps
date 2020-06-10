@@ -1,0 +1,14 @@
+系统函数调用：
+	核心：函数描述符
+	
+	函数调用：man命令
+	
+	函数使用：
+1.open
+       int open(const char *pathname, int flags);
+       int open(const char *pathname, int flags, mode_t mode);
+       参数:
+       pathname:文件路径
+       flags:文件打开标志 O_APPEND 追加打开 O_CREAT可创建打开
+       mode：记录带创建参数的访问权限	
+	
